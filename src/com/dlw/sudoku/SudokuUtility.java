@@ -39,24 +39,24 @@ public class SudokuUtility {
 
     public void completeEightColumn(int columnNum, Sudoku puzzle) {
 
-        SudokuRow row = puzzle.getColumn(columnNum);
-        for(int j = 0; j < row.size(); ++j) {
-            System.out.print(row.getTheLinearNine()[j]);
+        SudokuColumn column = puzzle.getColumn(columnNum);
+        for(int j = 0; j < column.size(); ++j) {
+            System.out.print(column.getTheLinearNine()[j]);
         }
         System.out.println("");
         // determine missing number
-        int missing = row.getNinthNumber();
+        int missing = column.getNinthNumber();
         System.out.println("The missing number is: " + missing);
 
-        // complete row
-        row.populateMissingNumber(missing);
-        for(int j = 0; j < row.size(); ++j) {
-            System.out.print(row.getTheLinearNine()[j]);
+        // complete column
+        column.populateMissingNumber(missing);
+        for(int j = 0; j < column.size(); ++j) {
+            System.out.print(column.getTheLinearNine()[j]);
         }
         System.out.println("");
 
-        // update puzzle row
-        puzzle.updateRow(rowNum, row);
+        // update puzzle column
+        puzzle.updateColumn(columnNum, column);
 
     }
 

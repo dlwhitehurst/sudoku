@@ -109,13 +109,50 @@ class Sudoku {
         updateBlocks();
     }
 
-    public void solve() {
-        do {
-            // solve
-        } while (!checkPuzzle());
+    public SudokuColumn getColumn(int columnNum) {
+        int index = columnNum - 1;
+        SudokuColumn column = new SudokuColumn();
+        column.fill(0, parent.theGrid[0][index]);
+        column.fill(1, parent.theGrid[1][index]);
+        column.fill(2, parent.theGrid[2][index]);
+        column.fill(3, parent.theGrid[3][index]);
+        column.fill(4, parent.theGrid[4][index]);
+        column.fill(5, parent.theGrid[5][index]);
+        column.fill(6, parent.theGrid[6][index]);
+        column.fill(7, parent.theGrid[7][index]);
+        column.fill(8, parent.theGrid[8][index]);
+
+        return column;
     }
 
-    private Boolean checkPuzzle() {
+    public void updateColumn(int columnNum, SudokuColumn column) {
+        int index = columnNum - 1;
+        for(int j = 0; j < column.size(); ++j) {
+            parent.populate(j ,index, column.theLinearNine[j]);
+        }
+        updateBlocks();
+    }
+
+    public void solve() {
+        do {
+            for (int j = 0; j < 9; ++j) {
+                SudokuColumn column = this.getColumn(j + 1);
+                if (column.isEightColumn()) {
+                    SudokuUtility.getInstance().completeEightColumn(j + 1, this);
+                }
+            }
+        } while (!puzzleComplete());
+    }
+
+    private Boolean puzzleComplete() {
+        boolean retVal = true;
+        for(int j = 0; j < 9; ++j) {
+            SudokuRow row = this.getRow(j+1);
+            if (!row.isComplete()) {
+                retVal = false;
+            }
+        }
+        //return retVal;
         return true;
     }
 
@@ -243,7 +280,7 @@ class Sudoku {
         parent.populate(1,5,'*');
         parent.populate(1,6,'*');
         parent.populate(1,7,'*');
-        parent.populate(1,8,'*');
+        parent.populate(1,8,'2');
 // 3
         parent.populate(2,0,'*');
         parent.populate(2,1,'*');
@@ -253,7 +290,7 @@ class Sudoku {
         parent.populate(2,5,'1');
         parent.populate(2,6,'*');
         parent.populate(2,7,'*');
-        parent.populate(2,8,'*');
+        parent.populate(2,8,'3');
 // 4
         parent.populate(3,0,'*');
         parent.populate(3,1,'*');
@@ -263,7 +300,7 @@ class Sudoku {
         parent.populate(3,5,'9');
         parent.populate(3,6,'1');
         parent.populate(3,7,'*');
-        parent.populate(3,8,'*');
+        parent.populate(3,8,'4');
 // 5
         parent.populate(4,0,'9');
         parent.populate(4,1,'3');
@@ -283,7 +320,7 @@ class Sudoku {
         parent.populate(5,5,'2');
         parent.populate(5,6,'*');
         parent.populate(5,7,'*');
-        parent.populate(5,8,'*');
+        parent.populate(5,8,'5');
 // 7
         parent.populate(6,0,'*');
         parent.populate(6,1,'*');
@@ -293,7 +330,7 @@ class Sudoku {
         parent.populate(6,5,'*');
         parent.populate(6,6,'*');
         parent.populate(6,7,'*');
-        parent.populate(6,8,'*');
+        parent.populate(6,8,'8');
 // 8
         parent.populate(7,0,'*');
         parent.populate(7,1,'*');

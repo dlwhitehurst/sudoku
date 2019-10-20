@@ -12,6 +12,18 @@ public class SudokuRow extends LinearNine {
     private boolean eight = false;
     private boolean nine = false;
 
+    public boolean isComplete() {
+        boolean retVal = true;
+        for(int j = 0; j < super.size(); ++j) {
+            // check each placeholder
+            String tmp = new String(String.valueOf(theLinearNine[j]));
+            if (tmp.equals("*")){
+                retVal = false;
+            }
+        }
+
+        return retVal;
+    }
 
     public boolean isEightRow() {
         boolean retVal = false;

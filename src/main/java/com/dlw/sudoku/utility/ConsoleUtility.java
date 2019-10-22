@@ -1,4 +1,6 @@
-package com.dlw.sudoku;
+package com.dlw.sudoku.utility;
+
+import com.dlw.sudoku.types.Grid;
 
 public class ConsoleUtility {
 
@@ -7,22 +9,22 @@ public class ConsoleUtility {
     private ConsoleUtility() {
     }
 
-    static ConsoleUtility getInstance() {
+    public static ConsoleUtility getInstance() {
         if (instance == null)
             instance = new ConsoleUtility();
 
         return instance;
     }
 
-    void printPuzzle(Grid grid) {
+    public void printPuzzle(Grid grid) {
         grid.printGrid();
     }
 
-    void printRowComplete(int rowNo) {
+    public void printRowComplete(int rowNo) {
         System.out.println("Row no. " + rowNo + " is complete!");
     }
 
-    void printColumnComplete(int colNo) {
+    public void printColumnComplete(int colNo) {
         System.out.println("Column no. " + colNo + " is complete!");
     }
 }

@@ -1,15 +1,16 @@
-package com.dlw.sudoku;
+package com.dlw.sudoku.types;
 
 public class Grid {
 
-    char[][] theGrid;
-    int rows;
-    int cols;
+    private char[][] theGrid;
+    private int rows;
+    private int cols;
+
 
     /**
      * Class constructor
      */
-    Grid(int rows,int cols) {
+    public Grid(int rows,int cols) {
         theGrid = new char[rows][cols];
         this.rows = rows;
         this.cols = cols;
@@ -18,7 +19,7 @@ public class Grid {
     /**
      * fill a coordinate position row, col with a char
      */
-    void populate(int r, int c, char a) {
+    public void populate(int r, int c, char a) {
         theGrid[r][c] = a;
     }
 
@@ -28,7 +29,7 @@ public class Grid {
      * @param c
      * @return
      */
-    char extract(int r, int c) {
+    public char extract(int r, int c) {
         return new Character(theGrid[r][c]);
     }
 
@@ -36,7 +37,7 @@ public class Grid {
      * FIll all spots with a char
      * @param x
      */
-    void fill(char x) {
+    public void fill(char x) {
         for(int i = 0; i < theGrid.length; ++i) {
             for(int j = 0; j < theGrid[i].length; ++j) {
                 theGrid[i][j] = x;
@@ -47,7 +48,7 @@ public class Grid {
     /**
      * Print the columns by rows
      */
-    void printGrid() {
+    public void printGrid() {
         for (int i = 0; i<rows; i++) {
             for (int j = 0; j<cols; j++) {
                 char x = theGrid[i][j];
@@ -57,4 +58,29 @@ public class Grid {
             System.out.println("\n");
         }
     }
+
+    public char[][] getTheGrid() {
+        return theGrid;
+    }
+
+    public void setTheGrid(char[][] theGrid) {
+        this.theGrid = theGrid;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    public int getCols() {
+        return cols;
+    }
+
+    public void setCols(int cols) {
+        this.cols = cols;
+    }
+
 }

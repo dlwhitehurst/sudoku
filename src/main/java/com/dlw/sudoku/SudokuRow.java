@@ -1,5 +1,7 @@
 package com.dlw.sudoku;
 
+import com.dlw.sudoku.types.LinearNine;
+
 public class SudokuRow extends LinearNine {
 
     private boolean one = false;
@@ -16,7 +18,7 @@ public class SudokuRow extends LinearNine {
         boolean retVal = true;
         for(int j = 0; j < super.size(); ++j) {
             // check each placeholder
-            String tmp = new String(String.valueOf(theLinearNine[j]));
+            String tmp = new String(String.valueOf(getTheLinearNine()[j]));
             if (tmp.equals("*")){
                 retVal = false;
             }
@@ -31,7 +33,7 @@ public class SudokuRow extends LinearNine {
         if (this.isNotEmpty()) {
             for(int j = 0; j < super.size(); ++j) {
                 // check each placeholder
-                String tmp = new String(String.valueOf(theLinearNine[j]));
+                String tmp = new String(String.valueOf(getTheLinearNine()[j]));
                 if (tmp.contains("1") ||
                     tmp.contains("2") ||
                     tmp.contains("3") ||
@@ -55,7 +57,7 @@ public class SudokuRow extends LinearNine {
         // add missing number in empty position
         for(int j = 0; j < this.size(); ++j) {
             if (this.getTheLinearNine()[j] == '*') {
-                this.theLinearNine[j] = new String(Integer.toString(missing)).charAt(0);
+                this.getTheLinearNine()[j] = new String(Integer.toString(missing)).charAt(0);
             }
         }
     }
@@ -130,7 +132,7 @@ public class SudokuRow extends LinearNine {
         boolean retVal = false;
         for(int j = 0; j < super.size(); ++j) {
             // check each placeholder
-            String tmp = new String(String.valueOf(theLinearNine[j]));
+            String tmp = new String(String.valueOf(getTheLinearNine()[j]));
             if (!tmp.equals("")){
                 retVal = true;
             }

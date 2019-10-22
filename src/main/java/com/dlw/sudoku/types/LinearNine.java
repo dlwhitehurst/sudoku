@@ -1,24 +1,15 @@
-package com.dlw.sudoku;
-
-import java.lang.reflect.Array;
+package com.dlw.sudoku.types;
 
 public class LinearNine {
 
-    public char[] getTheLinearNine() {
-        return theLinearNine;
-    }
 
-    public void setTheLinearNine(char[] theLinearNine) {
-        this.theLinearNine = theLinearNine;
-    }
-
-    char[] theLinearNine;
-    int nine = 9;
+    private char[] theLinearNine;
+    private int nine = 9;
 
     /**
      * Class constructor
      */
-    LinearNine() {
+    public LinearNine() {
         theLinearNine = new char[nine];
     }
 
@@ -28,6 +19,14 @@ public class LinearNine {
 
     public void fill(int index, char x) {
         theLinearNine[index] = x;
+    }
+
+    public char[] getTheLinearNine() {
+        return theLinearNine;
+    }
+
+    public void setTheLinearNine(char[] theLinearNine) {
+        this.theLinearNine = theLinearNine;
     }
 
     private void testLoad() {

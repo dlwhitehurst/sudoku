@@ -2,14 +2,15 @@ package com.dlw.sudoku.types;
 
 public class Grid {
 
-    private char[][] theGrid;
-    private int rows;
-    private int cols;
+    protected char[][] theGrid;
+    protected int rows;
+    protected int cols;
 
 
     /**
      * Class constructor
      */
+    public Grid() {} // default
     public Grid(int rows,int cols) {
         theGrid = new char[rows][cols];
         this.rows = rows;

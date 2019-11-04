@@ -4,6 +4,7 @@ import com.dlw.sudoku.Sudoku;
 import com.dlw.sudoku.SudokuColumn;
 import com.dlw.sudoku.SudokuRow;
 import com.dlw.sudoku.types.Grid;
+import com.dlw.sudoku.types.GridNine;
 
 public class SudokuUtility {
 
@@ -27,7 +28,7 @@ public class SudokuUtility {
         }
         System.out.println("");
         // determine missing number
-        int missing = row.getNinthNumber();
+        int missing = row.getOneMissingNumber();
         System.out.println("The missing number is: " + missing);
 
         // complete row
@@ -52,7 +53,7 @@ public class SudokuUtility {
         System.out.println("");
 
         // determine missing number
-        int missing = column.getNinthNumber();
+        int missing = column.getOneMissingNumber();
         System.out.println("COLNUM-" + columnNum + " NEEDS: " + missing);
 
         // complete column
@@ -68,18 +69,84 @@ public class SudokuUtility {
 
     }
 
+    public void tryFixSevenRow(int rowNum, Sudoku puzzle) {
+        // check cross columns for existence of one of the two missing numbers
+    }
+
+    public void tryFixSevenColumn(int columnNum, Sudoku puzzle) {
+        // check cross rows for existence of one of the two missing numbers
+    }
+
+    public void completeEightBlock(int blockNum, Sudoku puzzle) {
+        GridNine block = null;
+        // find the missing number and fill it
+        switch (blockNum) {
+            case 1:
+                block = (GridNine) puzzle.getB1();
+                addSingleMissingNumber(block);
+                puzzle.setB1(block);
+                break;
+            case 2:
+                block = (GridNine) puzzle.getB2();
+                addSingleMissingNumber(block);
+                puzzle.setB2(block);
+                break;
+            case 3:
+                block = (GridNine) puzzle.getB3();
+                addSingleMissingNumber(block);
+                puzzle.setB3(block);
+                break;
+            case 4:
+                block = (GridNine) puzzle.getB4();
+                addSingleMissingNumber(block);
+                puzzle.setB4(block);
+                break;
+            case 5:
+                block = (GridNine) puzzle.getB5();
+                addSingleMissingNumber(block);
+                puzzle.setB5(block);
+                break;
+            case 6:
+                block = (GridNine) puzzle.getB6();
+                addSingleMissingNumber(block);
+                puzzle.setB6(block);
+                break;
+            case 7:
+                block = (GridNine) puzzle.getB7();
+                addSingleMissingNumber(block);
+                puzzle.setB7(block);
+                break;
+            case 8:
+                block = (GridNine) puzzle.getB8();
+                addSingleMissingNumber(block);
+                puzzle.setB8(block);
+                break;
+            case 9:
+                block = (GridNine) puzzle.getB9();
+                addSingleMissingNumber(block);
+                puzzle.setB9(block);
+                break;
+            default:
+                break;
+        }
+    }
+
     public boolean isEightBlock(Grid block) {
         boolean retVal = false;
+        int count = 0;
         for (int j = 0; j < 3; ++j) {
             if (block.getTheGrid()[0][j] == '*') {
-                retVal = true;
+                count++;
             }
             if (block.getTheGrid()[1][j] == '*') {
-                retVal = true;
+                count++;
             }
             if (block.getTheGrid()[2][j] == '*') {
-                retVal = true;
+                count++;
             }
+        }
+        if (count == 1) {
+            retVal = true;
         }
         return retVal;
     }
@@ -182,7 +249,7 @@ public class SudokuUtility {
     }
 
     public void updateBlocks(Sudoku puzzle) {
-        // 1
+        // Block 1
         puzzle.getB1().populate(0,0, puzzle.getParent().extract(0,0));
         puzzle.getB1().populate(0,1, puzzle.getParent().extract(0,1));
         puzzle.getB1().populate(0,2, puzzle.getParent().extract(0,2));
@@ -193,7 +260,7 @@ public class SudokuUtility {
         puzzle.getB1().populate(2,1, puzzle.getParent().extract(2,1));
         puzzle.getB1().populate(2,2, puzzle.getParent().extract(2,2));
 
-        // 2
+        // Block 2
         puzzle.getB2().populate(0,0, puzzle.getParent().extract(0,3));
         puzzle.getB2().populate(0,1, puzzle.getParent().extract(0,4));
         puzzle.getB2().populate(0,2, puzzle.getParent().extract(0,5));
@@ -204,7 +271,7 @@ public class SudokuUtility {
         puzzle.getB2().populate(2,1, puzzle.getParent().extract(2,4));
         puzzle.getB2().populate(2,2, puzzle.getParent().extract(2,5));
 
-        //3
+        // Block 3
         puzzle.getB3().populate(0,0, puzzle.getParent().extract(0,6));
         puzzle.getB3().populate(0,1, puzzle.getParent().extract(0,7));
         puzzle.getB3().populate(0,2, puzzle.getParent().extract(0,8));
@@ -215,7 +282,7 @@ public class SudokuUtility {
         puzzle.getB3().populate(2,1, puzzle.getParent().extract(2,7));
         puzzle.getB3().populate(2,2, puzzle.getParent().extract(2,8));
 
-        // 4
+        // Block 4
         puzzle.getB4().populate(0,0, puzzle.getParent().extract(3,0));
         puzzle.getB4().populate(0,1, puzzle.getParent().extract(3,1));
         puzzle.getB4().populate(0,2, puzzle.getParent().extract(3,2));
@@ -226,7 +293,7 @@ public class SudokuUtility {
         puzzle.getB4().populate(2,1, puzzle.getParent().extract(5,1));
         puzzle.getB4().populate(2,2, puzzle.getParent().extract(5,2));
 
-        // 5
+        // Block 5
         puzzle.getB5().populate(0,0, puzzle.getParent().extract(3,3));
         puzzle.getB5().populate(0,1, puzzle.getParent().extract(3,4));
         puzzle.getB5().populate(0,2, puzzle.getParent().extract(3,5));
@@ -237,7 +304,7 @@ public class SudokuUtility {
         puzzle.getB5().populate(2,1, puzzle.getParent().extract(5,4));
         puzzle.getB5().populate(2,2, puzzle.getParent().extract(5,5));
 
-        // 6
+        // Block 6
         puzzle.getB6().populate(0,0, puzzle.getParent().extract(3,6));
         puzzle.getB6().populate(0,1, puzzle.getParent().extract(3,7));
         puzzle.getB6().populate(0,2, puzzle.getParent().extract(3,8));
@@ -248,7 +315,7 @@ public class SudokuUtility {
         puzzle.getB6().populate(2,1, puzzle.getParent().extract(5,7));
         puzzle.getB6().populate(2,2, puzzle.getParent().extract(5,8));
 
-        // 7
+        // Block 7
         puzzle.getB7().populate(0,0, puzzle.getParent().extract(6,0));
         puzzle.getB7().populate(0,1, puzzle.getParent().extract(6,1));
         puzzle.getB7().populate(0,2, puzzle.getParent().extract(6,2));
@@ -259,7 +326,7 @@ public class SudokuUtility {
         puzzle.getB7().populate(2,1, puzzle.getParent().extract(8,1));
         puzzle.getB7().populate(2,2, puzzle.getParent().extract(8,2));
 
-        // 8
+        // Block 8
         puzzle.getB8().populate(0,0, puzzle.getParent().extract(6,3));
         puzzle.getB8().populate(0,1, puzzle.getParent().extract(6,4));
         puzzle.getB8().populate(0,2, puzzle.getParent().extract(6,5));
@@ -270,7 +337,7 @@ public class SudokuUtility {
         puzzle.getB8().populate(2,1, puzzle.getParent().extract(8,4));
         puzzle.getB8().populate(2,2, puzzle.getParent().extract(8,5));
 
-        // 9
+        // Block 9
         puzzle.getB9().populate(0,0, puzzle.getParent().extract(6,6));
         puzzle.getB9().populate(0,1, puzzle.getParent().extract(6,7));
         puzzle.getB9().populate(0,2, puzzle.getParent().extract(6,8));
@@ -282,4 +349,11 @@ public class SudokuUtility {
         puzzle.getB9().populate(2,2, puzzle.getParent().extract(8,8));
     }
 
+    private void addSingleMissingNumber(GridNine block) {
+        block.settMissingNumberIndices();
+        int number = block.getOneMissingNumber();
+        int rowIndex = block.getEmptyRow();
+        int colIndex = block.getEmptyCol();
+        block.getTheGrid()[rowIndex][colIndex] = new Integer(number).toString(number).charAt(0);
+    }
 }

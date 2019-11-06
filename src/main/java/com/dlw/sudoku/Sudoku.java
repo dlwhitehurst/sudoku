@@ -202,6 +202,55 @@ public class Sudoku {
                     SudokuUtility.getInstance().completeEightRow(j + 1, this);
                 }
             }
+            // check each block for eight blocks
+
+            // Block 1
+            if (SudokuUtility.getInstance().isEightBlock(this.getB1())) {
+                System.out.println("B1 is an EightBlock");
+                SudokuUtility.getInstance().completeEightBlock(1, this);
+            }
+            // Block 2
+            if (SudokuUtility.getInstance().isEightBlock(this.getB2())) {
+                System.out.println("B2 is an EightBlock");
+                SudokuUtility.getInstance().completeEightBlock(2, this);
+            }
+            // Block 3
+            if (SudokuUtility.getInstance().isEightBlock(this.getB3())) {
+                System.out.println("B3 is an EightBlock");
+                SudokuUtility.getInstance().completeEightBlock(3, this);
+            }
+            // Block 4
+            if (SudokuUtility.getInstance().isEightBlock(this.getB4())) {
+                System.out.println("B4 is an EightBlock");
+                SudokuUtility.getInstance().completeEightBlock(4, this);
+            }
+            // Block 5
+            if (SudokuUtility.getInstance().isEightBlock(this.getB5())) {
+                System.out.println("B5 is an EightBlock");
+                SudokuUtility.getInstance().completeEightBlock(5, this);
+            }
+            // Block 6
+            if (SudokuUtility.getInstance().isEightBlock(this.getB6())) {
+                System.out.println("B6 is an EightBlock");
+                SudokuUtility.getInstance().completeEightBlock(6, this);
+            }
+            // Block 7
+            if (SudokuUtility.getInstance().isEightBlock(this.getB7())) {
+                System.out.println("B7 is an EightBlock");
+                SudokuUtility.getInstance().completeEightBlock(7, this);
+            }
+            // Block 8
+            if (SudokuUtility.getInstance().isEightBlock(this.getB8())) {
+                System.out.println("B8 is an EightBlock");
+                SudokuUtility.getInstance().completeEightBlock(8, this);
+            }
+            // Block 9
+            if (SudokuUtility.getInstance().isEightBlock(this.getB9())) {
+                System.out.println("B9 is an EightBlock");
+                SudokuUtility.getInstance().completeEightBlock(9, this);
+            }
+
+
         } while (!puzzleComplete());
     }
 
@@ -257,15 +306,15 @@ public class Sudoku {
 
     public void setB3(GridNine b3) {
         this.b3 = b3;
-        this.parent.getTheGrid()[0][6] = b2.getTheGrid()[0][0];
-        this.parent.getTheGrid()[0][7] = b2.getTheGrid()[0][1];
-        this.parent.getTheGrid()[0][8] = b2.getTheGrid()[0][2];
-        this.parent.getTheGrid()[1][6] = b2.getTheGrid()[1][0];
-        this.parent.getTheGrid()[1][7] = b2.getTheGrid()[1][1];
-        this.parent.getTheGrid()[1][8] = b2.getTheGrid()[1][2];
-        this.parent.getTheGrid()[2][6] = b2.getTheGrid()[2][0];
-        this.parent.getTheGrid()[2][7] = b2.getTheGrid()[2][1];
-        this.parent.getTheGrid()[2][8] = b2.getTheGrid()[2][2];
+        this.parent.getTheGrid()[0][6] = b3.getTheGrid()[0][0];
+        this.parent.getTheGrid()[0][7] = b3.getTheGrid()[0][1];
+        this.parent.getTheGrid()[0][8] = b3.getTheGrid()[0][2];
+        this.parent.getTheGrid()[1][6] = b3.getTheGrid()[1][0];
+        this.parent.getTheGrid()[1][7] = b3.getTheGrid()[1][1];
+        this.parent.getTheGrid()[1][8] = b3.getTheGrid()[1][2];
+        this.parent.getTheGrid()[2][6] = b3.getTheGrid()[2][0];
+        this.parent.getTheGrid()[2][7] = b3.getTheGrid()[2][1];
+        this.parent.getTheGrid()[2][8] = b3.getTheGrid()[2][2];
     }
 
     public GridNine getB4() {
@@ -274,15 +323,15 @@ public class Sudoku {
 
     public void setB4(GridNine b4) {
         this.b4 = b4;
-        this.parent.getTheGrid()[3][0] = b2.getTheGrid()[0][0];
-        this.parent.getTheGrid()[3][1] = b2.getTheGrid()[0][1];
-        this.parent.getTheGrid()[3][2] = b2.getTheGrid()[0][2];
-        this.parent.getTheGrid()[4][0] = b2.getTheGrid()[1][0];
-        this.parent.getTheGrid()[4][1] = b2.getTheGrid()[1][1];
-        this.parent.getTheGrid()[4][2] = b2.getTheGrid()[1][2];
-        this.parent.getTheGrid()[5][0] = b2.getTheGrid()[2][0];
-        this.parent.getTheGrid()[5][1] = b2.getTheGrid()[2][1];
-        this.parent.getTheGrid()[5][2] = b2.getTheGrid()[2][2];
+        this.parent.getTheGrid()[3][0] = b4.getTheGrid()[0][0];
+        this.parent.getTheGrid()[3][1] = b4.getTheGrid()[0][1];
+        this.parent.getTheGrid()[3][2] = b4.getTheGrid()[0][2];
+        this.parent.getTheGrid()[4][0] = b4.getTheGrid()[1][0];
+        this.parent.getTheGrid()[4][1] = b4.getTheGrid()[1][1];
+        this.parent.getTheGrid()[4][2] = b4.getTheGrid()[1][2];
+        this.parent.getTheGrid()[5][0] = b4.getTheGrid()[2][0];
+        this.parent.getTheGrid()[5][1] = b4.getTheGrid()[2][1];
+        this.parent.getTheGrid()[5][2] = b4.getTheGrid()[2][2];
     }
 
     public GridNine getB5() {
@@ -291,15 +340,15 @@ public class Sudoku {
 
     public void setB5(GridNine b5) {
         this.b5 = b5;
-        this.parent.getTheGrid()[3][3] = b2.getTheGrid()[0][0];
-        this.parent.getTheGrid()[3][4] = b2.getTheGrid()[0][1];
-        this.parent.getTheGrid()[3][5] = b2.getTheGrid()[0][2];
-        this.parent.getTheGrid()[4][3] = b2.getTheGrid()[1][0];
-        this.parent.getTheGrid()[4][4] = b2.getTheGrid()[1][1];
-        this.parent.getTheGrid()[4][5] = b2.getTheGrid()[1][2];
-        this.parent.getTheGrid()[5][3] = b2.getTheGrid()[2][0];
-        this.parent.getTheGrid()[5][4] = b2.getTheGrid()[2][1];
-        this.parent.getTheGrid()[5][5] = b2.getTheGrid()[2][2];
+        this.parent.getTheGrid()[3][3] = b5.getTheGrid()[0][0];
+        this.parent.getTheGrid()[3][4] = b5.getTheGrid()[0][1];
+        this.parent.getTheGrid()[3][5] = b5.getTheGrid()[0][2];
+        this.parent.getTheGrid()[4][3] = b5.getTheGrid()[1][0];
+        this.parent.getTheGrid()[4][4] = b5.getTheGrid()[1][1];
+        this.parent.getTheGrid()[4][5] = b5.getTheGrid()[1][2];
+        this.parent.getTheGrid()[5][3] = b5.getTheGrid()[2][0];
+        this.parent.getTheGrid()[5][4] = b5.getTheGrid()[2][1];
+        this.parent.getTheGrid()[5][5] = b5.getTheGrid()[2][2];
     }
 
     public GridNine getB6() {
@@ -308,15 +357,15 @@ public class Sudoku {
 
     public void setB6(GridNine b6) {
         this.b6 = b6;
-        this.parent.getTheGrid()[3][6] = b2.getTheGrid()[0][0];
-        this.parent.getTheGrid()[3][7] = b2.getTheGrid()[0][1];
-        this.parent.getTheGrid()[3][8] = b2.getTheGrid()[0][2];
-        this.parent.getTheGrid()[4][6] = b2.getTheGrid()[1][0];
-        this.parent.getTheGrid()[4][7] = b2.getTheGrid()[1][1];
-        this.parent.getTheGrid()[4][8] = b2.getTheGrid()[1][2];
-        this.parent.getTheGrid()[5][6] = b2.getTheGrid()[2][0];
-        this.parent.getTheGrid()[5][7] = b2.getTheGrid()[2][1];
-        this.parent.getTheGrid()[5][8] = b2.getTheGrid()[2][2];
+        this.parent.getTheGrid()[3][6] = b6.getTheGrid()[0][0];
+        this.parent.getTheGrid()[3][7] = b6.getTheGrid()[0][1];
+        this.parent.getTheGrid()[3][8] = b6.getTheGrid()[0][2];
+        this.parent.getTheGrid()[4][6] = b6.getTheGrid()[1][0];
+        this.parent.getTheGrid()[4][7] = b6.getTheGrid()[1][1];
+        this.parent.getTheGrid()[4][8] = b6.getTheGrid()[1][2];
+        this.parent.getTheGrid()[5][6] = b6.getTheGrid()[2][0];
+        this.parent.getTheGrid()[5][7] = b6.getTheGrid()[2][1];
+        this.parent.getTheGrid()[5][8] = b6.getTheGrid()[2][2];
     }
 
     public GridNine getB7() {
@@ -325,15 +374,15 @@ public class Sudoku {
 
     public void setB7(GridNine b7) {
         this.b7 = b7;
-        this.parent.getTheGrid()[6][0] = b2.getTheGrid()[0][0];
-        this.parent.getTheGrid()[6][1] = b2.getTheGrid()[0][1];
-        this.parent.getTheGrid()[6][2] = b2.getTheGrid()[0][2];
-        this.parent.getTheGrid()[7][0] = b2.getTheGrid()[1][0];
-        this.parent.getTheGrid()[7][1] = b2.getTheGrid()[1][1];
-        this.parent.getTheGrid()[7][2] = b2.getTheGrid()[1][2];
-        this.parent.getTheGrid()[8][0] = b2.getTheGrid()[2][0];
-        this.parent.getTheGrid()[8][1] = b2.getTheGrid()[2][1];
-        this.parent.getTheGrid()[8][2] = b2.getTheGrid()[2][2];
+        this.parent.getTheGrid()[6][0] = b7.getTheGrid()[0][0];
+        this.parent.getTheGrid()[6][1] = b7.getTheGrid()[0][1];
+        this.parent.getTheGrid()[6][2] = b7.getTheGrid()[0][2];
+        this.parent.getTheGrid()[7][0] = b7.getTheGrid()[1][0];
+        this.parent.getTheGrid()[7][1] = b7.getTheGrid()[1][1];
+        this.parent.getTheGrid()[7][2] = b7.getTheGrid()[1][2];
+        this.parent.getTheGrid()[8][0] = b7.getTheGrid()[2][0];
+        this.parent.getTheGrid()[8][1] = b7.getTheGrid()[2][1];
+        this.parent.getTheGrid()[8][2] = b7.getTheGrid()[2][2];
     }
 
     public GridNine getB8() {
@@ -342,15 +391,15 @@ public class Sudoku {
 
     public void setB8(GridNine b8) {
         this.b8 = b8;
-        this.parent.getTheGrid()[6][3] = b2.getTheGrid()[0][0];
-        this.parent.getTheGrid()[6][4] = b2.getTheGrid()[0][1];
-        this.parent.getTheGrid()[6][5] = b2.getTheGrid()[0][2];
-        this.parent.getTheGrid()[7][3] = b2.getTheGrid()[1][0];
-        this.parent.getTheGrid()[7][4] = b2.getTheGrid()[1][1];
-        this.parent.getTheGrid()[7][5] = b2.getTheGrid()[1][2];
-        this.parent.getTheGrid()[8][3] = b2.getTheGrid()[2][0];
-        this.parent.getTheGrid()[8][4] = b2.getTheGrid()[2][1];
-        this.parent.getTheGrid()[8][5] = b2.getTheGrid()[2][2];
+        this.parent.getTheGrid()[6][3] = b8.getTheGrid()[0][0];
+        this.parent.getTheGrid()[6][4] = b8.getTheGrid()[0][1];
+        this.parent.getTheGrid()[6][5] = b8.getTheGrid()[0][2];
+        this.parent.getTheGrid()[7][3] = b8.getTheGrid()[1][0];
+        this.parent.getTheGrid()[7][4] = b8.getTheGrid()[1][1];
+        this.parent.getTheGrid()[7][5] = b8.getTheGrid()[1][2];
+        this.parent.getTheGrid()[8][3] = b8.getTheGrid()[2][0];
+        this.parent.getTheGrid()[8][4] = b8.getTheGrid()[2][1];
+        this.parent.getTheGrid()[8][5] = b8.getTheGrid()[2][2];
     }
 
     public GridNine getB9() {
@@ -359,15 +408,15 @@ public class Sudoku {
 
     public void setB9(GridNine b9) {
         this.b9 = b9;
-        this.parent.getTheGrid()[6][6] = b2.getTheGrid()[0][0];
-        this.parent.getTheGrid()[6][7] = b2.getTheGrid()[0][1];
-        this.parent.getTheGrid()[6][8] = b2.getTheGrid()[0][2];
-        this.parent.getTheGrid()[7][6] = b2.getTheGrid()[1][0];
-        this.parent.getTheGrid()[7][7] = b2.getTheGrid()[1][1];
-        this.parent.getTheGrid()[7][8] = b2.getTheGrid()[1][2];
-        this.parent.getTheGrid()[8][6] = b2.getTheGrid()[2][0];
-        this.parent.getTheGrid()[8][7] = b2.getTheGrid()[2][1];
-        this.parent.getTheGrid()[8][8] = b2.getTheGrid()[2][2];
+        this.parent.getTheGrid()[6][6] = b9.getTheGrid()[0][0];
+        this.parent.getTheGrid()[6][7] = b9.getTheGrid()[0][1];
+        this.parent.getTheGrid()[6][8] = b9.getTheGrid()[0][2];
+        this.parent.getTheGrid()[7][6] = b9.getTheGrid()[1][0];
+        this.parent.getTheGrid()[7][7] = b9.getTheGrid()[1][1];
+        this.parent.getTheGrid()[7][8] = b9.getTheGrid()[1][2];
+        this.parent.getTheGrid()[8][6] = b9.getTheGrid()[2][0];
+        this.parent.getTheGrid()[8][7] = b9.getTheGrid()[2][1];
+        this.parent.getTheGrid()[8][8] = b9.getTheGrid()[2][2];
     }
 
     public Boolean getStateB1() {

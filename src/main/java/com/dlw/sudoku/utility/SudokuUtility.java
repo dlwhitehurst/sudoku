@@ -186,9 +186,9 @@ public class SudokuUtility {
         puzzle.getParent().populate(2,7,'*');
         puzzle.getParent().populate(2,8,'3');
 // Row 4
-        puzzle.getParent().populate(3,0,'*');
-        puzzle.getParent().populate(3,1,'*');
-        puzzle.getParent().populate(3,2,'*');
+        puzzle.getParent().populate(3,0,'2');
+        puzzle.getParent().populate(3,1,'4');
+        puzzle.getParent().populate(3,2,'5');
         puzzle.getParent().populate(3,3,'3');
         puzzle.getParent().populate(3,4,'*');
         puzzle.getParent().populate(3,5,'9');
@@ -206,7 +206,7 @@ public class SudokuUtility {
         puzzle.getParent().populate(4,7,'4');
         puzzle.getParent().populate(4,8,'6');
 // Row 6
-        puzzle.getParent().populate(5,0,'*');
+        puzzle.getParent().populate(5,0,'6');
         puzzle.getParent().populate(5,1,'*');
         puzzle.getParent().populate(5,2,'7');
         puzzle.getParent().populate(5,3,'6');
@@ -220,8 +220,8 @@ public class SudokuUtility {
         puzzle.getParent().populate(6,1,'*');
         puzzle.getParent().populate(6,2,'*');
         puzzle.getParent().populate(6,3,'9');
-        puzzle.getParent().populate(6,4,'*');
-        puzzle.getParent().populate(6,5,'*');
+        puzzle.getParent().populate(6,4,'1');
+        puzzle.getParent().populate(6,5,'8');
         puzzle.getParent().populate(6,6,'*');
         puzzle.getParent().populate(6,7,'*');
         puzzle.getParent().populate(6,8,'8');
@@ -230,7 +230,7 @@ public class SudokuUtility {
         puzzle.getParent().populate(7,1,'*');
         puzzle.getParent().populate(7,2,'*');
         puzzle.getParent().populate(7,3,'*');
-        puzzle.getParent().populate(7,4,'*');
+        puzzle.getParent().populate(7,4,'7');
         puzzle.getParent().populate(7,5,'5');
         puzzle.getParent().populate(7,6,'6');
         puzzle.getParent().populate(7,7,'*');

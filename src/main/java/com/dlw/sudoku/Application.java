@@ -15,16 +15,8 @@ public class Application {
         // print base puzzle
         ConsoleUtility.getInstance().printPuzzle(sudoku.getParent());
 
-        if (SudokuUtility.getInstance().isEightBlock(sudoku.getB1())) {
-            System.out.println("Block 1 (b1) is an EightBlock, cool beans!");
-            SudokuUtility.getInstance().completeEightBlock(1, sudoku);
-        } else {
-            System.out.println("Nope, not an EightBlock");
-        }
 
         sudoku.solve();
-        //SudokuUtility.getInstance().completeEightRow(9, sudoku);
-        //SudokuUtility.getInstance().completeEightColumn(9, sudoku);
 
         ConsoleUtility.getInstance().printPuzzle(sudoku.getParent());
     }

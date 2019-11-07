@@ -5,6 +5,12 @@ import com.dlw.sudoku.types.Grid;
 import com.dlw.sudoku.types.GridNine;
 import com.dlw.sudoku.types.LinearNine;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
 public class SudokuUtility {
 
     private static SudokuUtility instance = null;
@@ -360,6 +366,79 @@ public class SudokuUtility {
         puzzle.getB9().populate(2,0, puzzle.getParent().extract(8,6));
         puzzle.getB9().populate(2,1, puzzle.getParent().extract(8,7));
         puzzle.getB9().populate(2,2, puzzle.getParent().extract(8,8));
+    }
+
+    public void loadParentFromCSVFile(Sudoku puzzle) throws FileNotFoundException {
+        // open and read file
+        BufferedReader br = new BufferedReader(new FileReader(getClass().getClassLoader().getResource("puzzle1.csv").getFile()));
+        try {
+            String line;
+            int rowNum = 1;
+            while ((line = br.readLine()) != null) {
+                // process the line
+                System.out.println(line);
+                // load each row
+                switch (rowNum) {
+                    case 1:
+                        loadRow(line, 0, puzzle);
+                        rowNum++;
+                        break;
+                    case 2:
+                        loadRow(line, 1, puzzle);
+                        rowNum++;
+                        break;
+                    case 3:
+                        loadRow(line, 2, puzzle);
+                        rowNum++;
+                        break;
+                    case 4:
+                        loadRow(line, 3, puzzle);
+                        rowNum++;
+                        break;
+                    case 5:
+                        loadRow(line, 4, puzzle);
+                        rowNum++;
+                        break;
+                    case 6:
+                        loadRow(line, 5, puzzle);
+                        rowNum++;
+                        break;
+                    case 7:
+                        loadRow(line, 6, puzzle);
+                        rowNum++;
+                        break;
+                    case 8:
+                        loadRow(line, 7, puzzle);
+                        rowNum++;
+                        break;
+                    case 9:
+                        loadRow(line, 8, puzzle);
+                        rowNum++;
+                        break;
+                    default:
+
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void loadRow(String line, int rowIndex, Sudoku puzzle) {
+        StringTokenizer toker = new StringTokenizer(line, ",");
+        int colIndex = 0;
+        while(toker.hasMoreTokens()) {
+            String strNo = toker.nextToken();
+            puzzle.getParent().populate(rowIndex, colIndex, strNo.charAt(0));
+            colIndex++;
+        }
     }
 
     private void addSingleMissingNumber(GridNine block) {

@@ -3,6 +3,8 @@ package com.dlw.sudoku;
 import com.dlw.sudoku.utility.ConsoleUtility;
 import com.dlw.sudoku.utility.SudokuUtility;
 
+import java.io.FileNotFoundException;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -10,7 +12,14 @@ public class Application {
         System.out.println("Hello Sudoku!");
 
         Sudoku sudoku = new Sudoku();
-        SudokuUtility.getInstance().loadParent(sudoku);
+        // load puzzle from CSV file
+        try {
+            SudokuUtility.getInstance().loadParentFromCSVFile(sudoku);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // update internal blocks (data structures)
         SudokuUtility.getInstance().updateBlocks(sudoku);
 
         // print puzzle

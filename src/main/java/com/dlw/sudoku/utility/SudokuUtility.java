@@ -376,8 +376,6 @@ public class SudokuUtility {
             int rowNum = 1;
             while ((line = br.readLine()) != null) {
                 // process the line
-                System.out.println(line);
-                // load each row
                 switch (rowNum) {
                     case 1:
                         loadRow(line, 0, puzzle);
@@ -416,9 +414,7 @@ public class SudokuUtility {
                         rowNum++;
                         break;
                     default:
-
                 }
-
             }
         } catch (IOException e) {
             e.printStackTrace();

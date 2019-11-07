@@ -186,88 +186,72 @@ public class Sudoku {
         SudokuUtility.getInstance().updateBlocks(this);
         // set boolean column complete
 
+        // set boolean column complete
+        if (column.isComplete()) {
+            switch(columnNum) {
+                case 1: {
+                    this.setStateC1(true);
+                    break;
+                }
+                case 2: {
+                    this.setStateC2(true);
+                    break;
+                }
+                case 3: {
+                    this.setStateC3(true);
+                    break;
+                }
+                case 4: {
+                    this.setStateC4(true);
+                    break;
+                }
+                case 5: {
+                    this.setStateC5(true);
+                    break;
+                }
+                case 6: {
+                    this.setStateC6(true);
+                    break;
+                }
+                case 7: {
+                    this.setStateC7(true);
+                    break;
+                }
+                case 8: {
+                    this.setStateC8(true);
+                    break;
+                }
+                case 9: {
+                    this.setStateC9(true);
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+        }
     }
 
     public void solve() {
         do {
-            // check each column if 8-length ... resolve
-            for (int j = 0; j < 9; ++j) {
-                LinearNine column = this.getColumn(j + 1);
-                if (column.isEightCount()) {
-                    ConsoleUtility.getInstance().printFoundEightColumn(j+1);
-                    SudokuUtility.getInstance().completeEightColumn(j + 1, this);
-                }
-            }
-            // check each row if 8-length ... resolve
-            for (int j = 0; j < 9; ++j) {
-                LinearNine row = this.getRow(j + 1);
-                if (row.isEightCount()) {
-                    ConsoleUtility.getInstance().printFoundEightRow(j+1);
-                    SudokuUtility.getInstance().completeEightRow(j + 1, this);
-                }
-            }
-            // check each block for eight blocks
 
-            // Block 1
-            if (SudokuUtility.getInstance().isEightBlock(this.getB1())) {
-                ConsoleUtility.getInstance().printFoundEightBlock(1);
-                SudokuUtility.getInstance().completeEightBlock(1, this);
-            }
-            // Block 2
-            if (SudokuUtility.getInstance().isEightBlock(this.getB2())) {
-                ConsoleUtility.getInstance().printFoundEightBlock(2);
-                SudokuUtility.getInstance().completeEightBlock(2, this);
-            }
-            // Block 3
-            if (SudokuUtility.getInstance().isEightBlock(this.getB3())) {
-                ConsoleUtility.getInstance().printFoundEightBlock(3);
-                SudokuUtility.getInstance().completeEightBlock(3, this);
-            }
-            // Block 4
-            if (SudokuUtility.getInstance().isEightBlock(this.getB4())) {
-                ConsoleUtility.getInstance().printFoundEightBlock(4);
-                SudokuUtility.getInstance().completeEightBlock(4, this);
-            }
-            // Block 5
-            if (SudokuUtility.getInstance().isEightBlock(this.getB5())) {
-                ConsoleUtility.getInstance().printFoundEightBlock(5);
-                SudokuUtility.getInstance().completeEightBlock(5, this);
-            }
-            // Block 6
-            if (SudokuUtility.getInstance().isEightBlock(this.getB6())) {
-                ConsoleUtility.getInstance().printFoundEightBlock(6);
-                SudokuUtility.getInstance().completeEightBlock(6, this);
-            }
-            // Block 7
-            if (SudokuUtility.getInstance().isEightBlock(this.getB7())) {
-                ConsoleUtility.getInstance().printFoundEightBlock(7);
-                SudokuUtility.getInstance().completeEightBlock(7, this);
-            }
-            // Block 8
-            if (SudokuUtility.getInstance().isEightBlock(this.getB8())) {
-                ConsoleUtility.getInstance().printFoundEightBlock(8);
-                SudokuUtility.getInstance().completeEightBlock(8, this);
-            }
-            // Block 9
-            if (SudokuUtility.getInstance().isEightBlock(this.getB9())) {
-                ConsoleUtility.getInstance().printFoundEightBlock(9);
-                SudokuUtility.getInstance().completeEightBlock(9, this);
-            }
+            // check each column for eight count ... resolve
+            checkForEightColumns();
+
+            // check each row for eight count ... resolve
+            checkForEightRows();
+
+            // check each block for eight blocks ... resolve
+            checkForEightBlocks();
+
+            // check each column if 7-length ... resolve if possible
+            checkForSevenColumns();
+
+            // check each row if 7-length ... resolve if possible
+            checkForSevenRows();
 
 
         } while (!puzzleComplete());
-    }
-
-    private Boolean puzzleComplete() {
-        boolean retVal = true;
-        for(int j = 0; j < 9; ++j) {
-            LinearNine row = this.getRow(j+1);
-            if (!row.isComplete()) {
-                retVal = false;
-            }
-        }
-        //return retVal;
-        return true;
     }
 
     public GridNine getB1() {
@@ -639,7 +623,104 @@ public class Sudoku {
         this.stateC9 = stateC9;
     }
 
-    private void updateParentGrid(GridNine b1) {
+    private void checkForSevenRows() {
+        for (int j = 0; j < 9; ++j) {
+            LinearNine row = this.getRow(j + 1);
+            if (row.isSevenCount()) {
+                ConsoleUtility.getInstance().printFoundSevenRow(j+1);
+                SudokuUtility.getInstance().tryFixSevenRow(j + 1, this);
+            }
+        }
+    }
+
+    private void checkForSevenColumns() {
+        for (int j = 0; j < 9; ++j) {
+            LinearNine column = this.getColumn(j + 1);
+            if (column.isSevenCount()) {
+                ConsoleUtility.getInstance().printFoundSevenColumn(j+1);
+                SudokuUtility.getInstance().tryFixSevenColumn(j + 1, this);
+            }
+        }
+    }
+
+    private void checkForEightRows() {
+        for (int j = 0; j < 9; ++j) {
+            LinearNine row = this.getRow(j + 1);
+            if (row.isEightCount()) {
+                ConsoleUtility.getInstance().printFoundEightRow(j+1);
+                SudokuUtility.getInstance().completeEightRow(j + 1, this);
+            }
+        }
+    }
+
+    private void checkForEightColumns() {
+        for (int j = 0; j < 9; ++j) {
+            LinearNine column = this.getColumn(j + 1);
+            if (column.isEightCount()) {
+                ConsoleUtility.getInstance().printFoundEightColumn(j+1);
+                SudokuUtility.getInstance().completeEightColumn(j + 1, this);
+            }
+        }
+    }
+
+    private void checkForEightBlocks() {
+        // Block 1
+        if (SudokuUtility.getInstance().isEightBlock(this.getB1())) {
+            ConsoleUtility.getInstance().printFoundEightBlock(1);
+            SudokuUtility.getInstance().completeEightBlock(1, this);
+        }
+        // Block 2
+        if (SudokuUtility.getInstance().isEightBlock(this.getB2())) {
+            ConsoleUtility.getInstance().printFoundEightBlock(2);
+            SudokuUtility.getInstance().completeEightBlock(2, this);
+        }
+        // Block 3
+        if (SudokuUtility.getInstance().isEightBlock(this.getB3())) {
+            ConsoleUtility.getInstance().printFoundEightBlock(3);
+            SudokuUtility.getInstance().completeEightBlock(3, this);
+        }
+        // Block 4
+        if (SudokuUtility.getInstance().isEightBlock(this.getB4())) {
+            ConsoleUtility.getInstance().printFoundEightBlock(4);
+            SudokuUtility.getInstance().completeEightBlock(4, this);
+        }
+        // Block 5
+        if (SudokuUtility.getInstance().isEightBlock(this.getB5())) {
+            ConsoleUtility.getInstance().printFoundEightBlock(5);
+            SudokuUtility.getInstance().completeEightBlock(5, this);
+        }
+        // Block 6
+        if (SudokuUtility.getInstance().isEightBlock(this.getB6())) {
+            ConsoleUtility.getInstance().printFoundEightBlock(6);
+            SudokuUtility.getInstance().completeEightBlock(6, this);
+        }
+        // Block 7
+        if (SudokuUtility.getInstance().isEightBlock(this.getB7())) {
+            ConsoleUtility.getInstance().printFoundEightBlock(7);
+            SudokuUtility.getInstance().completeEightBlock(7, this);
+        }
+        // Block 8
+        if (SudokuUtility.getInstance().isEightBlock(this.getB8())) {
+            ConsoleUtility.getInstance().printFoundEightBlock(8);
+            SudokuUtility.getInstance().completeEightBlock(8, this);
+        }
+        // Block 9
+        if (SudokuUtility.getInstance().isEightBlock(this.getB9())) {
+            ConsoleUtility.getInstance().printFoundEightBlock(9);
+            SudokuUtility.getInstance().completeEightBlock(9, this);
+        }
+    }
+
+    private Boolean puzzleComplete() {
+        boolean retVal = true;
+        for(int j = 0; j < 9; ++j) {
+            LinearNine row = this.getRow(j+1);
+            if (!row.isComplete()) {
+                retVal = false;
+            }
+        }
+        //return retVal;
+        return true;
     }
 
 }

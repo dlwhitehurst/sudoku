@@ -110,6 +110,7 @@ public class LinearNine {
         }
         return retVal;
     }
+
     public void populateMissingNumber(int missing) {
         // add missing number in empty position
         for(int j = 0; j < this.size(); ++j) {
@@ -227,5 +228,117 @@ public class LinearNine {
             }
         }
         return retVal;
+    }
+
+    private void setNumberBooleansAllTrue() {
+        this.one = true;
+        this.two = true;
+        this.three = true;
+        this.four = true;
+        this.five = true;
+        this.six = true;
+        this.seven = true;
+        this.eight = true;
+        this.nine = true;
+    }
+
+    private void setNumberBooleansAllFalse() {
+        this.one = false;
+        this.two = false;
+        this.three = false;
+        this.four = false;
+        this.five = false;
+        this.six = false;
+        this.seven = false;
+        this.eight = false;
+        this.nine = false;
+    }
+
+    public int[] getMissingNumbers() {
+        setNumberBooleansAllFalse();
+        int[] numbers = new int[9];
+        for(int j = 0; j < this.size(); j++) {
+            String tmp = new String(String.valueOf(theLinearNine[j]));
+            if (tmp.contains("1")) {
+                this.one = true;
+            }
+            if (tmp.contains("2")) {
+                this.two = true;
+            }
+            if (tmp.contains("3")) {
+                this.three = true;
+            }
+            if (tmp.contains("4")) {
+                this.four = true;
+            }
+            if (tmp.contains("5")) {
+                this.five = true;
+            }
+            if (tmp.contains("6")) {
+                this.six = true;
+            }
+            if (tmp.contains("7")) {
+                this.seven = true;
+            }
+            if (tmp.contains("8")) {
+                this.eight = true;
+            }
+            if (tmp.contains("9")) {
+                this.nine = true;
+            }
+        }
+
+        int count = 0;
+        if (!this.one) {
+            numbers[count] = 1;
+            count++;
+        }
+        if (!this.two) {
+            numbers[count] = 2;
+            count++;
+        }
+        if (!this.three) {
+            numbers[count] = 3;
+            count++;
+        }
+        if (!this.four) {
+            numbers[count] = 4;
+            count++;
+        }
+        if (!this.five) {
+            numbers[count] = 5;
+            count++;
+        }
+        if (!this.six) {
+            numbers[count] = 6;
+            count++;
+        }
+        if (!this.seven) {
+            numbers[count] = 7;
+            count++;
+        }
+        if (!this.eight) {
+            numbers[count] = 8;
+            count++;
+        }
+        if (!this.nine) {
+            numbers[count] = 9;
+            count++;
+        }
+
+        return numbers;
+    }
+
+    public int[] getColumnIndices() {
+        int[] columns = new int[9];
+        int count = 0;
+        for(int j = 0; j < this.size(); j++) {
+            String tmp = new String(String.valueOf(theLinearNine[j]));
+            if (tmp.contains("*")) {
+                columns[count] = j+1;
+                count++;
+            }
+        }
+        return columns;
     }
 }

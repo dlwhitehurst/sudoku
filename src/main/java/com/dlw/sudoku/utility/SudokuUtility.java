@@ -54,6 +54,27 @@ public class SudokuUtility {
 
     public void tryFixSevenRow(int rowNum, Sudoku puzzle) {
         // check cross columns for existence of one of the two missing numbers
+
+        LinearNine row = puzzle.getRow(rowNum);
+
+        // determine missing numbers (2)
+        int [] missing = row.getMissingNumbers();
+        ConsoleUtility.getInstance().printIntArray(missing);
+
+        // need row indices for missing numbers
+        int [] columns = row.getColumnIndices();
+        ConsoleUtility.getInstance().printIntArray(columns);
+
+        // get the columns for inspection
+        LinearNine col1 = puzzle.getColumn(columns[0]);
+        LinearNine col2 = puzzle.getColumn(columns[1]);
+
+        // choose first number and inspect each column
+
+        // if first number found within either column, place first number in other column and in row where it crosses
+
+        // place second number in column that contains first number
+
     }
 
     public void tryFixSevenColumn(int columnNum, Sudoku puzzle) {
@@ -179,7 +200,7 @@ public class SudokuUtility {
         puzzle.getParent().populate(2,8,'3');
 // Row 4
         puzzle.getParent().populate(3,0,'2');
-        puzzle.getParent().populate(3,1,'4');
+        puzzle.getParent().populate(3,1,'6');
         puzzle.getParent().populate(3,2,'5');
         puzzle.getParent().populate(3,3,'3');
         puzzle.getParent().populate(3,4,'*');

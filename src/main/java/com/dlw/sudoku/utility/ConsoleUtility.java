@@ -44,4 +44,27 @@ public class ConsoleUtility {
         System.out.println("Block no. " + blockNo + " is eight-block!");
     }
 
+    public void printFoundSevenColumn(int colNo) {
+        System.out.println("Column no. " + colNo + " is seven-count!");
+    }
+
+    public void printFoundSevenRow(int rowNo) {
+        System.out.println("Row no. " + rowNo + " is seven-count!");
+    }
+
+    public void printIntArray(int[] numbers) {
+        for (int j=0; j < numbers.length; j++) {
+            if (numbers[j] != 0) {
+                System.out.print(numbers[j]);
+            }
+            if (numbers[j] != 0) {
+                System.out.print(",");
+            }
+        }
+        System.out.print("\n");
+    }
+
+    public void printEndDebug() {
+        System.out.println("######## END DEBUG ########");
+    }
 }

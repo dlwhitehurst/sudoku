@@ -15,6 +15,13 @@ public class LinearNine {
     protected boolean eight = false;
     protected boolean nine = false;
 
+    private int rowNo = 0;
+    private int colNo = 0;
+
+    private boolean row = false;
+    private boolean col = false;
+
+
     /**
      * Class constructor
      */
@@ -98,6 +105,7 @@ public class LinearNine {
             }
             if (count == 8) {
                 retVal = true;
+
             }
         }
         return retVal;
@@ -175,6 +183,38 @@ public class LinearNine {
         }
 
         return number;
+    }
+
+    public boolean isRow() {
+        return row;
+    }
+
+    public void setRow(boolean row) {
+        this.row = row;
+    }
+
+    public boolean isCol() {
+        return col;
+    }
+
+    public void setCol(boolean col) {
+        this.col = col;
+    }
+
+    public int getRowNo() {
+        return rowNo;
+    }
+
+    public void setRowNo(int rowNo) {
+        this.rowNo = rowNo;
+    }
+
+    public int getColNo() {
+        return colNo;
+    }
+
+    public void setColNo(int colNo) {
+        this.colNo = colNo;
     }
 
     private boolean isNotEmpty() {

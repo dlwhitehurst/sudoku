@@ -1,10 +1,9 @@
 package com.dlw.sudoku.utility;
 
 import com.dlw.sudoku.Sudoku;
-import com.dlw.sudoku.SudokuColumn;
-import com.dlw.sudoku.SudokuRow;
 import com.dlw.sudoku.types.Grid;
 import com.dlw.sudoku.types.GridNine;
+import com.dlw.sudoku.types.LinearNine;
 
 public class SudokuUtility {
 
@@ -22,51 +21,35 @@ public class SudokuUtility {
 
     public void completeEightRow(int rowNum, Sudoku puzzle) {
 
-        SudokuRow row = puzzle.getRow(rowNum);
-        for(int j = 0; j < row.size(); ++j) {
-            System.out.print(row.getTheLinearNine()[j]);
-        }
-        System.out.println("");
+        LinearNine row = puzzle.getRow(rowNum);
+
         // determine missing number
         int missing = row.getOneMissingNumber();
-        System.out.println("The missing number is: " + missing);
 
         // complete row
         row.populateMissingNumber(missing);
-        for(int j = 0; j < row.size(); ++j) {
-            System.out.print(row.getTheLinearNine()[j]);
-        }
-        System.out.println("");
 
         // update puzzle row
         puzzle.updateRow(rowNum, row);
+
+        ConsoleUtility.getInstance().printRowComplete(rowNum);
 
     }
 
     public void completeEightColumn(int columnNum, Sudoku puzzle) {
 
-        SudokuColumn column = puzzle.getColumn(columnNum);
-        System.out.print("COLNUM-" + columnNum + " BEFORE ");
-        for(int j = 0; j < column.size(); ++j) {
-            System.out.print(column.getTheLinearNine()[j]);
-        }
-        System.out.println("");
+        LinearNine column = puzzle.getColumn(columnNum);
 
         // determine missing number
         int missing = column.getOneMissingNumber();
-        System.out.println("COLNUM-" + columnNum + " NEEDS: " + missing);
 
         // complete column
         column.populateMissingNumber(missing);
-        System.out.print("COLNUM-" + columnNum + " AFTER ");
-        for(int j = 0; j < column.size(); ++j) {
-            System.out.print(column.getTheLinearNine()[j]);
-        }
-        System.out.println("");
 
         // update puzzle column
         puzzle.updateColumn(columnNum, column);
 
+        ConsoleUtility.getInstance().printColumnComplete(columnNum);
     }
 
     public void tryFixSevenRow(int rowNum, Sudoku puzzle) {
@@ -78,53 +61,62 @@ public class SudokuUtility {
     }
 
     public void completeEightBlock(int blockNum, Sudoku puzzle) {
-        GridNine block = null;
+        GridNine block;
         // find the missing number and fill it
         switch (blockNum) {
             case 1:
-                block = (GridNine) puzzle.getB1();
+                block = puzzle.getB1();
                 addSingleMissingNumber(block);
                 puzzle.setB1(block);
+                ConsoleUtility.getInstance().printBlockComplete(1);
                 break;
             case 2:
-                block = (GridNine) puzzle.getB2();
+                block = puzzle.getB2();
                 addSingleMissingNumber(block);
                 puzzle.setB2(block);
+                ConsoleUtility.getInstance().printBlockComplete(2);
                 break;
             case 3:
-                block = (GridNine) puzzle.getB3();
+                block = puzzle.getB3();
                 addSingleMissingNumber(block);
                 puzzle.setB3(block);
+                ConsoleUtility.getInstance().printBlockComplete(3);
                 break;
             case 4:
-                block = (GridNine) puzzle.getB4();
+                block = puzzle.getB4();
                 addSingleMissingNumber(block);
                 puzzle.setB4(block);
+                ConsoleUtility.getInstance().printBlockComplete(4);
                 break;
             case 5:
-                block = (GridNine) puzzle.getB5();
+                block = puzzle.getB5();
                 addSingleMissingNumber(block);
                 puzzle.setB5(block);
+                ConsoleUtility.getInstance().printBlockComplete(5);
                 break;
             case 6:
-                block = (GridNine) puzzle.getB6();
+                block = puzzle.getB6();
                 addSingleMissingNumber(block);
                 puzzle.setB6(block);
+                ConsoleUtility.getInstance().printBlockComplete(6);
                 break;
             case 7:
-                block = (GridNine) puzzle.getB7();
+                block = puzzle.getB7();
                 addSingleMissingNumber(block);
                 puzzle.setB7(block);
+                ConsoleUtility.getInstance().printBlockComplete(7);
                 break;
             case 8:
-                block = (GridNine) puzzle.getB8();
+                block = puzzle.getB8();
                 addSingleMissingNumber(block);
                 puzzle.setB8(block);
+                ConsoleUtility.getInstance().printBlockComplete(8);
                 break;
             case 9:
-                block = (GridNine) puzzle.getB9();
+                block = puzzle.getB9();
                 addSingleMissingNumber(block);
                 puzzle.setB9(block);
+                ConsoleUtility.getInstance().printBlockComplete(9);
                 break;
             default:
                 break;

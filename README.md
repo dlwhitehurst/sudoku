@@ -12,6 +12,8 @@ until the puzzle is solved. To solve the puzzle, I must identify and understand 
 
 If this then that can be done ...
 
-1. Rows with 8 numbers (8 of 9) can be completed.
-2. Columns with 8 numbers (8 of 9) can be completed.
-3. Blocks with 8 numbers (8 of 9) can be completed.
+1. Rows with 8 numbers (8 of 9) can be completed. (coded)
+2. Columns with 8 numbers (8 of 9) can be completed. (coded)
+3. Blocks with 8 numbers (8 of 9) can be completed. (coded)
+4. Rows with 7 numbers might be completed. (working)
+5. Columns with 7 numbers might be completed. (working)

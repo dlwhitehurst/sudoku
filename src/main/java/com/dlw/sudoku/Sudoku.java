@@ -3,6 +3,8 @@ package com.dlw.sudoku;
 import com.dlw.sudoku.types.Grid;
 import com.dlw.sudoku.types.GridNine;
 
+import com.dlw.sudoku.types.LinearNine;
+import com.dlw.sudoku.utility.ConsoleUtility;
 import com.dlw.sudoku.utility.SudokuUtility;
 
 public class Sudoku {
@@ -86,9 +88,9 @@ public class Sudoku {
         this.parent = parent;
     }
 
-    public SudokuRow getRow(int rowNum) {
+    public LinearNine getRow(int rowNum) {
         int index = rowNum - 1;
-        SudokuRow row = new SudokuRow();
+        LinearNine row = new LinearNine();
         row.fill(0, parent.getTheGrid()[index][0]);
         row.fill(1, parent.getTheGrid()[index][1]);
         row.fill(2, parent.getTheGrid()[index][2]);
@@ -102,9 +104,9 @@ public class Sudoku {
         return row;
     }
 
-    public SudokuColumn getColumn(int columnNum) {
+    public LinearNine getColumn(int columnNum) {
         int index = columnNum - 1;
-        SudokuColumn column = new SudokuColumn();
+        LinearNine column = new LinearNine();
         column.fill(0, parent.getTheGrid()[0][index]);
         column.fill(1, parent.getTheGrid()[1][index]);
         column.fill(2, parent.getTheGrid()[2][index]);
@@ -118,7 +120,7 @@ public class Sudoku {
         return column;
     }
 
-    public void updateRow(int rowNum, SudokuRow row) {
+    public void updateRow(int rowNum, LinearNine row) {
         int index = rowNum - 1;
         for(int j = 0; j < row.size(); ++j) {
             parent.populate(index ,j,row.getTheLinearNine()[j]);
@@ -175,7 +177,7 @@ public class Sudoku {
 
     }
 
-    public void updateColumn(int columnNum, SudokuColumn column) {
+    public void updateColumn(int columnNum, LinearNine column) {
         int index = columnNum - 1;
         for(int j = 0; j < column.size(); ++j) {
             parent.populate(j ,index, column.getTheLinearNine()[j]);
@@ -190,15 +192,17 @@ public class Sudoku {
         do {
             // check each column if 8-length ... resolve
             for (int j = 0; j < 9; ++j) {
-                SudokuColumn column = this.getColumn(j + 1);
+                LinearNine column = this.getColumn(j + 1);
                 if (column.isEightCount()) {
+                    ConsoleUtility.getInstance().printFoundEightColumn(j+1);
                     SudokuUtility.getInstance().completeEightColumn(j + 1, this);
                 }
             }
             // check each row if 8-length ... resolve
             for (int j = 0; j < 9; ++j) {
-                SudokuRow row = this.getRow(j + 1);
+                LinearNine row = this.getRow(j + 1);
                 if (row.isEightCount()) {
+                    ConsoleUtility.getInstance().printFoundEightRow(j+1);
                     SudokuUtility.getInstance().completeEightRow(j + 1, this);
                 }
             }
@@ -206,47 +210,47 @@ public class Sudoku {
 
             // Block 1
             if (SudokuUtility.getInstance().isEightBlock(this.getB1())) {
-                System.out.println("B1 is an EightBlock");
+                ConsoleUtility.getInstance().printFoundEightBlock(1);
                 SudokuUtility.getInstance().completeEightBlock(1, this);
             }
             // Block 2
             if (SudokuUtility.getInstance().isEightBlock(this.getB2())) {
-                System.out.println("B2 is an EightBlock");
+                ConsoleUtility.getInstance().printFoundEightBlock(2);
                 SudokuUtility.getInstance().completeEightBlock(2, this);
             }
             // Block 3
             if (SudokuUtility.getInstance().isEightBlock(this.getB3())) {
-                System.out.println("B3 is an EightBlock");
+                ConsoleUtility.getInstance().printFoundEightBlock(3);
                 SudokuUtility.getInstance().completeEightBlock(3, this);
             }
             // Block 4
             if (SudokuUtility.getInstance().isEightBlock(this.getB4())) {
-                System.out.println("B4 is an EightBlock");
+                ConsoleUtility.getInstance().printFoundEightBlock(4);
                 SudokuUtility.getInstance().completeEightBlock(4, this);
             }
             // Block 5
             if (SudokuUtility.getInstance().isEightBlock(this.getB5())) {
-                System.out.println("B5 is an EightBlock");
+                ConsoleUtility.getInstance().printFoundEightBlock(5);
                 SudokuUtility.getInstance().completeEightBlock(5, this);
             }
             // Block 6
             if (SudokuUtility.getInstance().isEightBlock(this.getB6())) {
-                System.out.println("B6 is an EightBlock");
+                ConsoleUtility.getInstance().printFoundEightBlock(6);
                 SudokuUtility.getInstance().completeEightBlock(6, this);
             }
             // Block 7
             if (SudokuUtility.getInstance().isEightBlock(this.getB7())) {
-                System.out.println("B7 is an EightBlock");
+                ConsoleUtility.getInstance().printFoundEightBlock(7);
                 SudokuUtility.getInstance().completeEightBlock(7, this);
             }
             // Block 8
             if (SudokuUtility.getInstance().isEightBlock(this.getB8())) {
-                System.out.println("B8 is an EightBlock");
+                ConsoleUtility.getInstance().printFoundEightBlock(8);
                 SudokuUtility.getInstance().completeEightBlock(8, this);
             }
             // Block 9
             if (SudokuUtility.getInstance().isEightBlock(this.getB9())) {
-                System.out.println("B9 is an EightBlock");
+                ConsoleUtility.getInstance().printFoundEightBlock(9);
                 SudokuUtility.getInstance().completeEightBlock(9, this);
             }
 
@@ -257,7 +261,7 @@ public class Sudoku {
     private Boolean puzzleComplete() {
         boolean retVal = true;
         for(int j = 0; j < 9; ++j) {
-            SudokuRow row = this.getRow(j+1);
+            LinearNine row = this.getRow(j+1);
             if (!row.isComplete()) {
                 retVal = false;
             }

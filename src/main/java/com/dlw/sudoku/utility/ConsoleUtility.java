@@ -27,4 +27,21 @@ public class ConsoleUtility {
     public void printColumnComplete(int colNo) {
         System.out.println("Column no. " + colNo + " is complete!");
     }
+
+    public void printBlockComplete(int blockNo) {
+        System.out.println("Block no. " + blockNo + " is complete!");
+    }
+
+    public void printFoundEightColumn(int colNo) {
+        System.out.println("Column no. " + colNo + " is eight-count!");
+    }
+
+    public void printFoundEightRow(int rowNo) {
+        System.out.println("Row no. " + rowNo + " is eight-count!");
+    }
+
+    public void printFoundEightBlock(int blockNo) {
+        System.out.println("Block no. " + blockNo + " is eight-block!");
+    }
+
 }

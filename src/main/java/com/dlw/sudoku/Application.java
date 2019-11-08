@@ -2,7 +2,7 @@ package com.dlw.sudoku;
 
 import com.dlw.sudoku.utility.ConsoleUtility;
 import com.dlw.sudoku.utility.SudokuUtility;
-import com.dlw.sudoku.utility.SwingUtility;
+import com.dlw.swing.SwingUtility;
 
 import java.io.FileNotFoundException;
 

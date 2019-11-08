@@ -252,13 +252,23 @@ public class Sudoku {
             // check each row if 7-length ... resolve if possible
             checkForSevenRows();
 
+            // cross-hatch all numbers, all directions ... resolve if possible
+            for (int i=1; i<10; i++) {
+                checkCrossHatchRowsOneToThree(i);
+                checkCrossHatchRowsFourToSix(i);
+                checkCrossHatchRowsSevenToNine(i);
+                checkCrossHatchColumnsOneToThree(i);
+                checkCrossHatchColumnsFourToSix(i);
+                checkCrossHatchRowsSevenToNine(i);
+            }
+
             count++;
             if (count == 2) {
                 status = true;
             }
 
-        //} while (!puzzleComplete());
-        } while (!status);
+        } while (!puzzleComplete());
+        //} while (!status);
 
     }
 
@@ -629,6 +639,54 @@ public class Sudoku {
 
     public void setStateC9(Boolean stateC9) {
         this.stateC9 = stateC9;
+    }
+
+    private void checkCrossHatchRowsOneToThree(int number) {
+        // check and fix if possible
+        LinearNine row1 = this.getRow(1);
+        LinearNine row2 = this.getRow(2);
+        LinearNine row3 = this.getRow(3);
+
+    }
+
+    private void checkCrossHatchRowsFourToSix(int number) {
+        // check and fix if possible
+        LinearNine row4 = this.getRow(4);
+        LinearNine row5 = this.getRow(5);
+        LinearNine row6 = this.getRow(6);
+
+    }
+
+    private void checkCrossHatchRowsSevenToNine(int number) {
+        // check and fix if possible
+        LinearNine row7 = this.getRow(7);
+        LinearNine row8 = this.getRow(8);
+        LinearNine row9 = this.getRow(9);
+
+    }
+
+    private void checkCrossHatchColumnsOneToThree(int number) {
+        // check and fix if possible
+        LinearNine col1 = this.getColumn(1);
+        LinearNine col2 = this.getColumn(2);
+        LinearNine col3 = this.getColumn(3);
+
+    }
+
+    private void checkCrossHatchColumnsFourToSix(int number) {
+        // check and fix if possible
+        LinearNine col4 = this.getColumn(4);
+        LinearNine col5 = this.getColumn(5);
+        LinearNine col6 = this.getColumn(6);
+
+    }
+
+    private void checkCrossHatchColumnsSevenToNine(int number) {
+        // check and fix if possible
+        LinearNine col7 = this.getColumn(7);
+        LinearNine col8 = this.getColumn(8);
+        LinearNine col9 = this.getColumn(9);
+
     }
 
     private void checkForSevenRows() {

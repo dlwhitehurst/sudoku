@@ -341,4 +341,17 @@ public class LinearNine {
         }
         return columns;
     }
+
+    public int[] getRowIndices() {
+        int[] rows = new int[9];
+        int count = 0;
+        for(int j = 0; j < this.size(); j++) {
+            String tmp = new String(String.valueOf(theLinearNine[j]));
+            if (tmp.contains("*")) {
+                rows[count] = j+1;
+                count++;
+            }
+        }
+        return rows;
+    }
 }

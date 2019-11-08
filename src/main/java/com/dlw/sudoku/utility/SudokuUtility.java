@@ -60,7 +60,6 @@ public class SudokuUtility {
 
     public void tryFixSevenRow(int rowNum, Sudoku puzzle) {
         // check cross columns for existence of one of the two missing numbers
-
         LinearNine row = puzzle.getRow(rowNum);
 
         // determine missing numbers (2)
@@ -75,16 +74,116 @@ public class SudokuUtility {
         LinearNine col1 = puzzle.getColumn(columns[0]);
         LinearNine col2 = puzzle.getColumn(columns[1]);
 
+        ConsoleUtility.getInstance().printLinearNine(Constants.COLUMN, col1);
+        ConsoleUtility.getInstance().printLinearNine(Constants.COLUMN, col2);
+
         // choose first number and inspect each column
+        String first = String.valueOf(missing[0]);
+        String second = String.valueOf(missing[1]);
 
-        // if first number found within either column, place first number in other column and in row where it crosses
+        // if first number found within first column, place first number in other column and in row where it crosses
+        for (int i=0; i<col1.size(); i++) {
+            String tmp = String.valueOf(col1.getTheLinearNine()[i]);
+            if (tmp.equals(first)) {
+                loadRowOtherColumn(row, columns[1], tmp);
+                puzzle.updateRow(rowNum, row);
+                ConsoleUtility.getInstance().printRowFixedAndComplete(rowNum);
+            }
+        }
 
-        // place second number in column that contains first number
+        // if first number found within second column, place first number in other column and in row where it crosses
+        for (int i=0; i<col2.size(); i++) {
+            String tmp = String.valueOf(col2.getTheLinearNine()[i]);
+            if (tmp.equals(first)) {
+                loadRowOtherColumn(row, columns[0], tmp);
+                puzzle.updateRow(rowNum, row);
+                ConsoleUtility.getInstance().printRowFixedAndComplete(rowNum);
+            }
+        }
 
+        // if second number found within first column, place second number in other column and in row where it crosses
+        for (int i=0; i<col1.size(); i++) {
+            String tmp = String.valueOf(col1.getTheLinearNine()[i]);
+            if (tmp.equals(second)) {
+                loadRowOtherColumn(row, columns[1], tmp);
+                puzzle.updateRow(rowNum, row);
+                ConsoleUtility.getInstance().printRowFixedAndComplete(rowNum);
+            }
+        }
+
+        // if second number found within second column, place second number in other column and in row where it crosses
+        for (int i=0; i<col2.size(); i++) {
+            String tmp = String.valueOf(col2.getTheLinearNine()[i]);
+            if (tmp.equals(second)) {
+                loadRowOtherColumn(row, columns[0], tmp);
+                puzzle.updateRow(rowNum, row);
+                ConsoleUtility.getInstance().printRowFixedAndComplete(rowNum);
+            }
+        }
     }
 
-    public void tryFixSevenColumn(int columnNum, Sudoku puzzle) {
+    public void tryFixSevenColumn(int colNum, Sudoku puzzle) {
         // check cross rows for existence of one of the two missing numbers
+        LinearNine col = puzzle.getRow(colNum);
+
+        // determine missing numbers (2)
+        int [] missing = col.getMissingNumbers();
+        ConsoleUtility.getInstance().printIntArray(missing);
+
+        // need row indices for missing numbers
+        int [] rows = col.getRowIndices();
+        ConsoleUtility.getInstance().printIntArray(rows);
+
+        // get the rows for inspection
+        LinearNine row1 = puzzle.getRow(rows[0]);
+        LinearNine row2 = puzzle.getRow(rows[1]);
+
+        ConsoleUtility.getInstance().printLinearNine(Constants.ROW, row1);
+        ConsoleUtility.getInstance().printLinearNine(Constants.ROW, row2);
+
+        // choose first number and inspect each row
+        String first = String.valueOf(missing[0]);
+        String second = String.valueOf(missing[1]);
+
+        // if first number found within first row, place first number in other row and in column where it crosses
+        for (int i=0; i<row1.size(); i++) {
+            String tmp = String.valueOf(row1.getTheLinearNine()[i]);
+            if (tmp.equals(first)) {
+                loadColumnOtherRow(col, rows[1], tmp);
+                puzzle.updateColumn(colNum, col);
+                ConsoleUtility.getInstance().printColumnFixedAndComplete(colNum);
+            }
+        }
+
+        // if first number found within second row, place first number in other row and in column where it crosses
+        for (int i=0; i<row2.size(); i++) {
+            String tmp = String.valueOf(row2.getTheLinearNine()[i]);
+            if (tmp.equals(first)) {
+                loadColumnOtherRow(col, rows[0], tmp);
+                puzzle.updateColumn(colNum, col);
+                ConsoleUtility.getInstance().printColumnFixedAndComplete(colNum);
+            }
+        }
+
+        // if second number found within first row, place second number in other row and in column where it crosses
+        for (int i=0; i<row1.size(); i++) {
+            String tmp = String.valueOf(row1.getTheLinearNine()[i]);
+            if (tmp.equals(second)) {
+                loadColumnOtherRow(col, rows[1], tmp);
+                puzzle.updateColumn(colNum, col);
+                ConsoleUtility.getInstance().printColumnFixedAndComplete(colNum);
+            }
+        }
+
+        // if second number found within second row, place second number in other row and in column where it crosses
+        for (int i=0; i<row2.size(); i++) {
+            String tmp = String.valueOf(row2.getTheLinearNine()[i]);
+            if (tmp.equals(second)) {
+                loadColumnOtherRow(col, rows[0], tmp);
+                puzzle.updateColumn(colNum, col);
+                ConsoleUtility.getInstance().printColumnFixedAndComplete(colNum);
+            }
+        }
     }
 
     public void completeEightBlock(int blockNum, Sudoku puzzle) {
@@ -444,4 +543,13 @@ public class SudokuUtility {
         int colIndex = block.getEmptyCol();
         block.getTheGrid()[rowIndex][colIndex] = new Integer(number).toString(number).charAt(0);
     }
+
+    private void loadRowOtherColumn(LinearNine row, int rowIndex, String value) {
+        row.getTheLinearNine()[rowIndex-1] = value.charAt(0);
+    }
+
+    private void loadColumnOtherRow(LinearNine col, int colIndex, String value) {
+        col.getTheLinearNine()[colIndex-1] = value.charAt(0);
+    }
+
 }

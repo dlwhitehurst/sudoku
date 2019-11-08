@@ -2,6 +2,7 @@ package com.dlw.sudoku;
 
 import com.dlw.sudoku.utility.ConsoleUtility;
 import com.dlw.sudoku.utility.SudokuUtility;
+import com.dlw.sudoku.utility.SwingUtility;
 
 import java.io.FileNotFoundException;
 
@@ -24,11 +25,13 @@ public class Application {
 
         // print puzzle
         ConsoleUtility.getInstance().printPuzzle(sudoku.getParent());
+        //SwingUtility.getInstance().renderPuzzle(sudoku, "Original Puzzle");
 
         // solve puzzle
         sudoku.solve();
 
         // print solution
-        ConsoleUtility.getInstance().printPuzzle(sudoku.getParent());
+        //ConsoleUtility.getInstance().printPuzzle(sudoku.getParent());
+        SwingUtility.getInstance().renderPuzzle(sudoku, "Solved Sudoku");
     }
 }

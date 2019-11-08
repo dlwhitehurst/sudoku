@@ -233,6 +233,8 @@ public class Sudoku {
     }
 
     public void solve() {
+        int count = 1;
+        boolean status = false;
         do {
 
             // check each column for eight count ... resolve
@@ -250,8 +252,14 @@ public class Sudoku {
             // check each row if 7-length ... resolve if possible
             checkForSevenRows();
 
+            count++;
+            if (count == 2) {
+                status = true;
+            }
 
-        } while (!puzzleComplete());
+        //} while (!puzzleComplete());
+        } while (!status);
+
     }
 
     public GridNine getB1() {

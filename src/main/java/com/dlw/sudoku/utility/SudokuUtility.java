@@ -469,7 +469,7 @@ public class SudokuUtility {
 
     public void loadParentFromCSVFile(Sudoku puzzle) throws FileNotFoundException {
         // open and read file
-        BufferedReader br = new BufferedReader(new FileReader(getClass().getClassLoader().getResource("puzzle1.csv").getFile()));
+        BufferedReader br = new BufferedReader(new FileReader(getClass().getClassLoader().getResource("puzzle46.csv").getFile()));
         try {
             String line;
             int rowNum = 1;

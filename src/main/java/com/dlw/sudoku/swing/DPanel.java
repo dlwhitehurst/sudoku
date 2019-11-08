@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.dlw.swing;
+package com.dlw.sudoku.swing;
 
 import javax.swing.*;
 import java.awt.*;

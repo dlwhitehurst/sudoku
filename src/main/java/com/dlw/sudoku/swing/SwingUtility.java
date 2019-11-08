@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.dlw.swing;
+package com.dlw.sudoku.swing;
 
 import com.dlw.sudoku.Sudoku;
 import com.dlw.sudoku.types.LinearNine;
